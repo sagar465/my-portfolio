@@ -1,20 +1,20 @@
-import { memo, useMemo } from "react";
-import reactLocal from "../assets/tech-icons/react.svg";
-import jsLocal from "../assets/tech-icons/javascript.svg";
-import tsLocal from "../assets/tech-icons/typescript.svg";
-import htmlLocal from "../assets/tech-icons/html5.svg";
-import cssLocal from "../assets/tech-icons/css3.svg";
-import figmaLocal from "../assets/tech-icons/figma.svg";
-import gitLocal from "../assets/tech-icons/git.svg";
-import githubLocal from "../assets/tech-icons/github.svg";
-import nodeLocal from "../assets/tech-icons/nodejs.svg";
-import javaLocal from "../assets/tech-icons/java.svg";
-import pythonLocal from "../assets/tech-icons/python.svg";
-import mysqlLocal from "../assets/tech-icons/mysql.svg";
-import mongoLocal from "../assets/tech-icons/mongodb.svg";
-import vscodeLocal from "../assets/tech-icons/vscode.svg";
-import dockerLocal from "../assets/tech-icons/docker.svg";
-import bootstrapLocal from "../assets/tech-icons/bootstrap.svg";
+import { memo, useMemo, useState, useEffect } from "react";
+import reactLocal from "../assets/tech-icons/react.svg?url";
+import jsLocal from "../assets/tech-icons/javascript.svg?url";
+import tsLocal from "../assets/tech-icons/typescript.svg?url";
+import htmlLocal from "../assets/tech-icons/html5.svg?url";
+import cssLocal from "../assets/tech-icons/css3.svg?url";
+import figmaLocal from "../assets/tech-icons/figma.svg?url";
+import gitLocal from "../assets/tech-icons/git.svg?url";
+import githubLocal from "../assets/tech-icons/github.svg?url";
+import nodeLocal from "../assets/tech-icons/nodejs.svg?url";
+import javaLocal from "../assets/tech-icons/java.svg?url";
+import pythonLocal from "../assets/tech-icons/python.svg?url";
+import mysqlLocal from "../assets/tech-icons/mysql.svg?url";
+import mongoLocal from "../assets/tech-icons/mongodb.svg?url";
+import vscodeLocal from "../assets/tech-icons/vscode.svg?url";
+import dockerLocal from "../assets/tech-icons/docker.svg?url";
+import bootstrapLocal from "../assets/tech-icons/bootstrap.svg?url";
 
 export const TechBackgroundSVG = memo(
   function TechBackgroundSVG() {
@@ -41,8 +41,55 @@ export const TechBackgroundSVG = memo(
   // Always use local icons
   const iconsToUse = localIcons;
 
+    // Pause animations when tab is hidden
+    const [paused, setPaused] = useState(false);
+    useEffect(() => {
+      const onVis = () => setPaused(document.hidden);
+      document.addEventListener('visibilitychange', onVis);
+      onVis();
+      return () => document.removeEventListener('visibilitychange', onVis);
+    }, []);
+
+    // Mobile/coarse-pointer fallback: animate HTML <img> icons instead of SVG <image>
+    const isCoarsePointer = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+  if (isCoarsePointer) {
+      // Precompute positions/durations to keep stable between renders
+      const items = useMemo(() => {
+        const arr = [] as { src: string; left: number; delay: number; duration: number; size: number }[];
+        const count = 16;
+        for (let i = 0; i < count; i++) {
+          const src = iconsToUse[i % iconsToUse.length];
+          const left = 5 + (i * (90 / (count - 1))); // 5% .. 95%
+          const delay = (i % 4) * 1.3; // stagger
+          const duration = 10 + (i % 5) * 2; // 10s..18s
+          const size = 18 + (i % 4) * 3; // 18..27 px
+          arr.push({ src, left, delay, duration, size });
+        }
+        return arr;
+      }, []);
+
+      return (
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-40 dark:opacity-50">
+          <style>{`
+            @keyframes fallY { 0% { transform: translateY(-10vh); opacity: 0; } 10% { opacity: 0.9; } 100% { transform: translateY(110vh); opacity: 0; } }
+            .bg-icon { position: absolute; top: 0; will-change: transform, opacity; animation-name: fallY; animation-timing-function: linear; animation-iteration-count: infinite; image-rendering: -webkit-optimize-contrast; }
+          `}</style>
+          {items.map((it, idx) => (
+            <img
+              key={idx}
+              src={it.src}
+              alt=""
+              className="bg-icon"
+              style={{ left: `${it.left}%`, width: it.size, height: it.size, animationDuration: `${it.duration}s`, animationDelay: `${it.delay}s`, animationPlayState: paused ? 'paused' : 'running' }}
+            />
+          ))}
+        </div>
+      );
+    }
+
     // Create column data with different icons, durations, and delays
-    const createColumn = (
+  const createColumn = (
       x: number,
       startY: number,
       duration: number,
@@ -50,14 +97,13 @@ export const TechBackgroundSVG = memo(
       iconIndex: number,
     ) => {
   const iconUrl = iconsToUse[iconIndex % iconsToUse.length];
-  const isFigma = iconUrl.includes('figma');
 
       return (
         <g
           key={`column-${x}-${iconIndex}`}
           transform={`translate(${x}, 0)`}
         >
-          {/* Lead tech icon with glow */}
+          {/* Tech icon (CSS animation for broader mobile compatibility) */}
           <image
             href={iconUrl}
             xlinkHref={iconUrl}
@@ -65,28 +111,14 @@ export const TechBackgroundSVG = memo(
             y={startY}
             width="24"
             height="24"
-            style={{ 
-              filter: isFigma ? "url(#figmaGlow)" : "url(#techGlow)",
-              opacity: isFigma ? "0.9" : undefined
+            className="icon-fall"
+            style={{
+              // Per-icon timing
+              animationDuration: `${duration}s`,
+              animationDelay: `${delay}s`,
+              animationPlayState: paused ? 'paused' : 'running',
             }}
-          >
-            <animateTransform
-              attributeName="transform"
-              attributeType="XML"
-              type="translate"
-              values={`0,${startY - 50}; 0,${startY + 800}`}
-              dur={`${duration}s`}
-              begin={`${delay}s`}
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="opacity"
-              values={isFigma ? "0;0.9;0.9;0" : "0;0.8;0.8;0"}
-              dur={`${duration}s`}
-              begin={`${delay}s`}
-              repeatCount="indefinite"
-            />
-          </image>
+          />
         </g>
       );
     };
@@ -124,6 +156,20 @@ export const TechBackgroundSVG = memo(
           }}
         >
           <defs>
+            {/* CSS animation for icon fall (avoids SMIL issues on mobile browsers) */}
+            <style>{`
+              @keyframes fall {
+                0% { transform: translateY(-60px); opacity: 0; }
+                10% { opacity: 0.85; }
+                100% { transform: translateY(800px); opacity: 0; }
+              }
+              .icon-fall {
+                animation-name: fall;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                will-change: transform, opacity;
+              }
+            `}</style>
             {/* Matrix green gradient for trails */}
             <linearGradient
               id="matrixTrail"
@@ -166,49 +212,7 @@ export const TechBackgroundSVG = memo(
               />
             </linearGradient>
 
-            {/* Tech icon glow filter */}
-            <filter
-              id="techGlow"
-              x="-50%"
-              y="-50%"
-              width="200%"
-              height="200%"
-            >
-              <feGaussianBlur
-                stdDeviation="2"
-                result="coloredBlur"
-              />
-              <feColorMatrix
-                in="coloredBlur"
-                values="0 1 0.2 0 0  0 1 0.2 0 0  0 1 0.2 0 0  0 0 0 1 0"
-              />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-
-            {/* Special Figma icon glow filter with purple tint */}
-            <filter
-              id="figmaGlow"
-              x="-50%"
-              y="-50%"
-              width="200%"
-              height="200%"
-            >
-              <feGaussianBlur
-                stdDeviation="3"
-                result="coloredBlur"
-              />
-              <feColorMatrix
-                in="coloredBlur"
-                values="0.8 0 1 0 0  0.2 0 1 0 0  0.8 0 1 0 0  0 0 0 1 0"
-              />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
+            {/* Removed icon filters for better mobile support */}
 
             {/* Subtle background tech pattern */}
             <pattern

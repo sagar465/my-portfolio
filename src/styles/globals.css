@@ -137,9 +137,10 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
     font-family: 'Clash Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   }
+  html { overflow-x: hidden; }
   
   /* Prevent text clipping globally */
   h1, h2, h3, h4, h5, h6 {
@@ -169,6 +170,9 @@
   div[class*="container"] {
     overflow: visible !important;
   }
+
+  /* Prevent accidental width overflow from absolutely positioned elements */
+  #root { overflow-x: hidden; }
 }
 
 /* MINIMAL fix for text line-height - NO !important, NO layout disruption */
@@ -177,6 +181,16 @@
   .text-descender-fix {
     line-height: 1.4;
     padding-bottom: 0.125rem;
+  }
+
+  /* Safe area helpers for notched devices */
+  .px-safe {
+    padding-left: max(env(safe-area-inset-left), 0px);
+    padding-right: max(env(safe-area-inset-right), 0px);
+  }
+  .mx-safe {
+    margin-left: max(env(safe-area-inset-left), 0px);
+    margin-right: max(env(safe-area-inset-right), 0px);
   }
 }
 

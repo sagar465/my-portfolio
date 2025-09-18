@@ -54,9 +54,17 @@
     build: {
       target: 'esnext',
       outDir: 'build',
+      // Always emit files (no data: URIs) so icons load reliably on all devices
+      assetsInlineLimit: 0,
     },
     server: {
       port: 3000,
+      host: true,
       open: true,
+    },
+    preview: {
+      host: true,
+      port: 4173,
+      open: false,
     },
   });

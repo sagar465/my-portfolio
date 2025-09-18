@@ -25,10 +25,31 @@ export function Projects({ projects }: ProjectsProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const transformRef = useRef<any>(null);
+  const thumbsContainerRef = useRef<HTMLDivElement>(null);
+  const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  const ensureThumbVisible = useCallback((index: number) => {
+    const parent = thumbsContainerRef.current;
+    const el = thumbRefs.current[index];
+    if (!parent || !el) return;
+    const adjust = () => {
+      const parentRect = parent.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const delta = (elRect.left + elRect.width / 2) - (parentRect.left + parentRect.width / 2);
+      parent.scrollLeft += delta;
+    };
+    // Try immediately and once after layout settles
+    adjust();
+    if (typeof requestAnimationFrame === 'function') {
+      requestAnimationFrame(() => adjust());
+    }
+  }, []);
 
   const openGallery = (projectIndex: number) => {
-    setSelectedProject(projectIndex);
-    setSelectedImage(0);
+  setSelectedProject(projectIndex);
+  setSelectedImage(0);
+  // Nudge thumbnails after mount (wait for layout & transitions)
+  setTimeout(() => ensureThumbVisible(0), 300);
   };
 
   const closeGallery = useCallback(() => {
@@ -68,7 +89,11 @@ export function Projects({ projects }: ProjectsProps) {
   const nextImage = useCallback(() => {
     if (selectedProject !== null) {
       const project = projects[selectedProject];
-      setSelectedImage((prev) => (prev + 1) % project.screenshots.length);
+      setSelectedImage((prev: number) => {
+        const ni = (prev + 1) % project.screenshots.length;
+        setTimeout(() => ensureThumbVisible(ni), 200);
+        return ni;
+      });
       // Reset zoom and center when changing images
       setTimeout(() => {
         if (transformRef.current) {
@@ -76,12 +101,16 @@ export function Projects({ projects }: ProjectsProps) {
         }
       }, 50);
     }
-  }, [selectedProject, projects]);
+  }, [selectedProject, projects, ensureThumbVisible]);
 
   const prevImage = useCallback(() => {
     if (selectedProject !== null) {
       const project = projects[selectedProject];
-      setSelectedImage((prev) => (prev - 1 + project.screenshots.length) % project.screenshots.length);
+      setSelectedImage((prev: number) => {
+        const ni = (prev - 1 + project.screenshots.length) % project.screenshots.length;
+        setTimeout(() => ensureThumbVisible(ni), 200);
+        return ni;
+      });
       // Reset zoom and center when changing images
       setTimeout(() => {
         if (transformRef.current) {
@@ -89,7 +118,7 @@ export function Projects({ projects }: ProjectsProps) {
         }
       }, 50);
     }
-  }, [selectedProject, projects]);
+  }, [selectedProject, projects, ensureThumbVisible]);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -124,6 +153,17 @@ export function Projects({ projects }: ProjectsProps) {
       return () => clearTimeout(timer);
     }
   }, [selectedProject, selectedImage]);
+
+  // Reset thumbnail refs when project changes
+  useEffect(() => {
+    thumbRefs.current = [];
+  }, [selectedProject]);
+
+  // Ensure selected thumbnail is visible in the strip (especially on mobile)
+  useEffect(() => {
+    if (selectedProject === null) return;
+    ensureThumbVisible(selectedImage);
+  }, [selectedImage, selectedProject, ensureThumbVisible]);
 
   const getHighlightIcon = (highlight: string) => {
     if (highlight.includes('star') || highlight.includes('rating')) return Star;
@@ -325,7 +365,7 @@ export function Projects({ projects }: ProjectsProps) {
 
               {/* Main Screenshot with Zoom/Pan */}
               <div className="flex-1 relative bg-black/50 overflow-hidden min-h-0">
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 z-0">
                   <TransformWrapper
                     ref={transformRef}
                     initialScale={1}
@@ -347,7 +387,6 @@ export function Projects({ projects }: ProjectsProps) {
                       step: 0.7 
                     }}
                     limitToBounds={false}
-                    smooth={true}
                     onInit={(ref) => {
                       transformRef.current = ref;
                     }}
@@ -367,29 +406,62 @@ export function Projects({ projects }: ProjectsProps) {
                   </TransformWrapper>
                 </div>
 
-                {/* Navigation Buttons */}
                 {selectedProject !== null && projects[selectedProject].screenshots.length > 1 && (
                   <>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 text-white hover:bg-black/90 backdrop-blur-sm z-10"
-                      title="Previous Image (←)"
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 text-white hover:bg-black/90 backdrop-blur-sm z-10"
-                      title="Next Image (→)"
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </Button>
+                    {/* Desktop/tablet arrows inside the image area, outside transformed content */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-30 hidden md:flex items-center pl-2 sm:pl-4 select-none">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+            onPointerDown={(e: any) => e.stopPropagation()}
+                        onClick={prevImage}
+                        className="pointer-events-auto bg-black/70 text-white hover:bg-black/90 backdrop-blur-sm"
+                        title="Previous Image (←)"
+                      >
+            <ChevronLeft className="w-6 h-6 transform-gpu" color="#fff" />
+                      </Button>
+                    </div>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 z-30 hidden md:flex items-center pr-2 sm:pr-4 select-none">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+            onPointerDown={(e: any) => e.stopPropagation()}
+                        onClick={nextImage}
+                        className="pointer-events-auto bg-black/70 text-white hover:bg-black/90 backdrop-blur-sm"
+                        title="Next Image (→)"
+                      >
+            <ChevronRight className="w-6 h-6 transform-gpu" color="#fff" />
+                      </Button>
+                    </div>
+
+                    {/* Mobile-only fixed arrows to bypass transform stacking issues */}
+          <div className="pointer-events-none fixed inset-y-0 left-0 right-0 z-[120] flex md:hidden items-center justify-between px-2 select-none">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+            onPointerDown={(e: any) => e.stopPropagation()}
+                        onClick={prevImage}
+            className="pointer-events-auto bg-black/75 text-white hover:bg-black/90"
+                        title="Previous Image (←)"
+                      >
+            <ChevronLeft className="w-6 h-6 transform-gpu" color="#fff" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+            onPointerDown={(e: any) => e.stopPropagation()}
+                        onClick={nextImage}
+            className="pointer-events-auto bg-black/75 text-white hover:bg-black/90"
+                        title="Next Image (→)"
+                      >
+            <ChevronRight className="w-6 h-6 transform-gpu" color="#fff" />
+                      </Button>
+                    </div>
                   </>
                 )}
+
+                {/* Navigation Buttons */}
+                {/* arrows overlay moved to modal root to avoid transform stacking issues */}
 
                 {/* Zoom Instructions */}
                 {/* <div className="absolute bottom-4 left-4 bg-black/70 text-white/80 text-xs px-3 py-2 rounded-lg backdrop-blur-sm">
@@ -403,10 +475,11 @@ export function Projects({ projects }: ProjectsProps) {
               <div className="bg-black/30 backdrop-blur-sm p-3 sm:p-4 shrink-0">
                 {/* Thumbnail Navigation */}
                 {projects[selectedProject].screenshots.length > 1 && (
-                  <div className="flex justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 overflow-x-auto pb-2">
+                  <div ref={thumbsContainerRef} className="w-full flex justify-start md:justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 overflow-x-auto pb-2 scroll-smooth snap-x snap-mandatory px-2">
                     {projects[selectedProject].screenshots.map((screenshot, index) => (
                       <button
                         key={index}
+                        ref={(el) => (thumbRefs.current[index] = el)}
                         onClick={() => {
                           setSelectedImage(index);
                           // Reset zoom and center when changing images
@@ -415,12 +488,14 @@ export function Projects({ projects }: ProjectsProps) {
                               transformRef.current.setTransform(0, 0, 1, 200, "easeOut");
                             }
                           }, 50);
+                          setTimeout(() => ensureThumbVisible(index), 200);
                         }}
-                        className={`flex-shrink-0 w-10 h-16 sm:w-12 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                        className={`flex-shrink-0 w-10 h-16 sm:w-12 sm:h-20 rounded-lg overflow-hidden border-2 transition-all snap-center ${
                           index === selectedImage 
                             ? 'border-white scale-110' 
                             : 'border-white/30 hover:border-white/60'
                         }`}
+                        style={{ scrollMarginInline: '24px' }}
                       >
                         <ImageWithFallback
                           src={screenshot}

@@ -33,19 +33,19 @@ export function Hero({ data, contact }: HeroProps) {
       
 
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           {/* Avatar */}
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            // initial={{ scale: 0, opacity: 0 }}
+            // animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-8"
           >
             <div className="relative w-32 h-32 mx-auto">
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                // animate={{ rotate: 360 }}
+                // transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-primary p-1"
               >
                 <div className="w-full h-full rounded-full bg-background p-1">

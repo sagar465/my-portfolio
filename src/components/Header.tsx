@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/button';
+import { resumeData } from './../data/resume-data';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -78,7 +79,7 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 px-safe">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div
@@ -86,8 +87,8 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
             className="cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
-            <span className="text-xl font-semibold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Venkata Sagar
+            <span className="text-xl ms-3 sm:ms-0 font-semibold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              {resumeData?.profile?.firstName || 'My Profile'}
             </span>
           </motion.div>
 

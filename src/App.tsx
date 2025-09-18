@@ -83,34 +83,12 @@ export default function App() {
     localStorage.setItem('darkMode', darkMode.toString());
   }, [darkMode]);
 
-  // Performance fallback - use simple background if needed
+  // Use simple background only if user prefers reduced motion
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // If page hasn't loaded within 3 seconds, use simple background
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
       setUseSimpleBackground(true);
-    }, 3000);
-
-    const handleLoad = () => {
-      clearTimeout(timer);
-    };
-
-    // Check if we should use simple background immediately based on device
-    const shouldUseSimple = window.innerWidth < 768 || navigator.hardwareConcurrency < 4;
-    if (shouldUseSimple) {
-      setUseSimpleBackground(true);
-      clearTimeout(timer);
     }
-
-    if (document.readyState === 'complete') {
-      clearTimeout(timer);
-    } else {
-      window.addEventListener('load', handleLoad);
-    }
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('load', handleLoad);
-    };
   }, []);
 
   const toggleDarkMode = () => {

@@ -27,6 +27,8 @@ import nf06 from '../assets/nutrifind/6_Profile_screen.png';
 export const resumeData = {
   profile: {
     name: "Venkata Sagar Varma Muppala",
+    firstName: "Venkata Sagar Varma",
+    lastName: "Muppala",
     title: "Full-Stack Software Architect",
     tagline:
       "11+ years building scalable apps across finance, travel, and retail. Java + Angular + React/React Native + microservices. AI-assisted delivery.",
