@@ -1,37 +1,45 @@
 import { memo, useMemo } from "react";
+import reactLocal from "../assets/tech-icons/react.svg";
+import jsLocal from "../assets/tech-icons/javascript.svg";
+import tsLocal from "../assets/tech-icons/typescript.svg";
+import htmlLocal from "../assets/tech-icons/html5.svg";
+import cssLocal from "../assets/tech-icons/css3.svg";
+import figmaLocal from "../assets/tech-icons/figma.svg";
+import gitLocal from "../assets/tech-icons/git.svg";
+import githubLocal from "../assets/tech-icons/github.svg";
+import nodeLocal from "../assets/tech-icons/nodejs.svg";
+import javaLocal from "../assets/tech-icons/java.svg";
+import pythonLocal from "../assets/tech-icons/python.svg";
+import mysqlLocal from "../assets/tech-icons/mysql.svg";
+import mongoLocal from "../assets/tech-icons/mongodb.svg";
+import vscodeLocal from "../assets/tech-icons/vscode.svg";
+import dockerLocal from "../assets/tech-icons/docker.svg";
+import bootstrapLocal from "../assets/tech-icons/bootstrap.svg";
 
 export const TechBackgroundSVG = memo(
   function TechBackgroundSVG() {
-    // Ultra-reliable tech icons - only the most common ones guaranteed to work
-    const techIcons = [
-      // Frontend
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-
-      // Design & Tools - Moving Figma to earlier position for better visibility
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-
-      // Backend
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-
-      // Databases
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-
-      // Additional Tools
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-
-      // Frameworks
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+  // Use local SVGs only (no external network dependency)
+  // Keep order stable for animation variety
+    const localIcons = [
+      reactLocal,
+      jsLocal,
+      tsLocal,
+      htmlLocal,
+      cssLocal,
+      figmaLocal,
+      gitLocal,
+      githubLocal,
+      nodeLocal,
+      javaLocal,
+      pythonLocal,
+      mysqlLocal,
+      mongoLocal,
+      vscodeLocal,
+      dockerLocal,
+      bootstrapLocal,
     ];
+  // Always use local icons
+  const iconsToUse = localIcons;
 
     // Create column data with different icons, durations, and delays
     const createColumn = (
@@ -41,8 +49,8 @@ export const TechBackgroundSVG = memo(
       delay: number,
       iconIndex: number,
     ) => {
-      const iconUrl = techIcons[iconIndex % techIcons.length];
-      const isFigma = iconUrl.includes('figma');
+  const iconUrl = iconsToUse[iconIndex % iconsToUse.length];
+  const isFigma = iconUrl.includes('figma');
 
       return (
         <g
@@ -52,6 +60,7 @@ export const TechBackgroundSVG = memo(
           {/* Lead tech icon with glow */}
           <image
             href={iconUrl}
+            xlinkHref={iconUrl}
             x="-12"
             y={startY}
             width="24"
