@@ -39,3 +39,5 @@ yarn-error.*
 #supabase
 # Supabase CLI cache
 supabase/.temp/
+
+build
