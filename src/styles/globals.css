@@ -256,3 +256,11 @@
 html {
   font-size: var(--font-size);
 }
+
+/* Prevent descender clipping on large headings by raising Tailwind's fallback line-heights */
+:root {
+  /* Tailwind defaults for very large sizes are ~1, which can clip g/p/y descenders with some fonts */
+  --text-4xl--line-height: calc(2.5 / 2.25); /* ≈1.11 */
+  --text-5xl--line-height: 1.5;
+  --text-6xl--line-height: 1.5;
+}

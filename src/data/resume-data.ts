@@ -1,4 +1,28 @@
 import profileAvatar from 'figma:asset/87bb8be30f1ab82a7e85c745cc7e7359d4ebf809.png';
+// EduManage screenshots
+import em01 from '../assets/edumanage/1_Login_screen_light.png';
+import em02a from '../assets/edumanage/2a_Signup_screen_light.png';
+import em02d from '../assets/edumanage/2_Login_screen_dark.png';
+import em03 from '../assets/edumanage/3_Dashboard_admin_screen_light_1.png';
+import em04 from '../assets/edumanage/4_Dashboard_admin_screen_light_2.png';
+import em05 from '../assets/edumanage/5_Academics_screen_light_1.png';
+import em06 from '../assets/edumanage/6_Academics_screen_light_2.png';
+import em07 from '../assets/edumanage/7_Newsletter_screen_light.png';
+import em07a from '../assets/edumanage/7a_Profile_screen_light_1.png';
+import em08 from '../assets/edumanage/8_Profile_settings_screen_light_1.png';
+import em09 from '../assets/edumanage/9_Profile_settings_screen_light_2.png';
+import em10 from '../assets/edumanage/10_Profile_edit_screen_light_1.png';
+import em11 from '../assets/edumanage/11_Profile_notifications_screen_light.png';
+import em12 from '../assets/edumanage/12_Forgot_password_screen_light_1.png';
+
+// NutriFind screenshots
+import nf01 from '../assets/nutrifind/1_Login_screen.png';
+import nf02 from '../assets/nutrifind/2_Signup_screen.png';
+import nf03a from '../assets/nutrifind/3a_Food_item_details_screen.png';
+import nf03 from '../assets/nutrifind/3_Text_search_screen.png';
+import nf04 from '../assets/nutrifind/4_Voice_search_screen.png';
+import nf05 from '../assets/nutrifind/5_Photo_search_screen.png';
+import nf06 from '../assets/nutrifind/6_Profile_screen.png';
 
 export const resumeData = {
   profile: {
@@ -402,10 +426,20 @@ export const resumeData = {
         "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       link: "",
       screenshots: [
-        "https://images.unsplash.com/photo-1723894691574-503e9677327e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBtb2NrdXAlMjBlZHVjYXRpb258ZW58MXx8fHwxNzU4MDYzNDgwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        "https://images.unsplash.com/photo-1570894808314-677b57f25e45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBtYW5hZ2VtZW50JTIwbW9iaWxlJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODA2MzQ4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        "https://images.unsplash.com/photo-1520410973988-f551cf36c60d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwZGFzaGJvYXJkJTIwbW9iaWxlJTIwYXBwfGVufDF8fHx8MTc1ODA2MzQ4Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        "https://images.unsplash.com/photo-1633250391894-397930e3f5f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjB1aSUyMGRlc2lnbiUyMGVkdWNhdGlvbmFsfGVufDF8fHx8MTc1ODA2MzQ5MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        em01,
+        em02a,
+        em02d,
+        em03,
+        em04,
+        em05,
+        em06,
+        em07,
+        em07a,
+        em08,
+        em09,
+        em10,
+        em11,
+        em12,
       ],
     },
     {
@@ -423,10 +457,13 @@ export const resumeData = {
         "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       link: "",
       screenshots: [
-        "https://images.unsplash.com/photo-1608441781710-9fc17b5bccad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxudXRyaXRpb24lMjB0cmFja2luZyUyMGFwcCUyMG1vY2t1cHxlbnwxfHx8fDE3NTgwNjM0OTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        "https://images.unsplash.com/photo-1731338789516-bffadd074e0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb29kJTIwdHJhY2tpbmclMjBtb2JpbGUlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4MDYzNDk3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        "https://images.unsplash.com/photo-1685810332449-22666f83adf2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxudXRyaXRpb24lMjBhcHAlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MXx8fHwxNzU4MDYzNTAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-        "https://images.unsplash.com/photo-1571952288324-552b8c0daceb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGglMjBhcHAlMjBtb2JpbGUlMjBzY3JlZW5zaG90c3xlbnwxfHx8fDE3NTgwNjM1MDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        nf01,
+        nf02,
+        nf03a,
+        nf03,
+        nf04,
+        nf05,
+        nf06,
       ],
     },
   ],

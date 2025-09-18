@@ -42,7 +42,7 @@ export function Background({}: BackgroundProps) {
                   whileHover={{ scale: 1.2 }}
                   className="relative z-10 flex-shrink-0"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br bg-black from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg">
                     <IconComponent className="w-7 h-7 text-white" />
                   </div>
                   <motion.div

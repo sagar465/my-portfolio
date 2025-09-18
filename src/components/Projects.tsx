@@ -249,13 +249,13 @@ export function Projects({ projects }: ProjectsProps) {
 
       {/* Screenshot Gallery Modal */}
       <AnimatePresence>
-        {selectedProject !== null && (
+    {selectedProject !== null && (
           <motion.div
             ref={modalRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+      className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
             onClick={handleBackdropClick}
           >
             <motion.div
@@ -360,7 +360,7 @@ export function Projects({ projects }: ProjectsProps) {
                         <ImageWithFallback
                           src={projects[selectedProject].screenshots[selectedImage]}
                           alt={`${projects[selectedProject].name} screenshot ${selectedImage + 1}`}
-                          className="max-w-[95vw] max-h-[calc(100vh-200px)] sm:max-w-[90vw] sm:max-h-[calc(100vh-180px)] object-contain select-none"
+                          className="max-w-full max-h-full object-contain select-none"
                         />
                       )}
                     </TransformComponent>
@@ -392,11 +392,11 @@ export function Projects({ projects }: ProjectsProps) {
                 )}
 
                 {/* Zoom Instructions */}
-                <div className="absolute bottom-4 left-4 bg-black/70 text-white/80 text-xs px-3 py-2 rounded-lg backdrop-blur-sm">
+                {/* <div className="absolute bottom-4 left-4 bg-black/70 text-white/80 text-xs px-3 py-2 rounded-lg backdrop-blur-sm">
                   <div>Double-click: Toggle zoom</div>
                   <div>Wheel: Zoom in/out</div>
                   <div>Drag: Pan around</div>
-                </div>
+                </div> */}
               </div>
 
               {/* Footer with thumbnails and project info */}
@@ -433,7 +433,7 @@ export function Projects({ projects }: ProjectsProps) {
                 )}
 
                 {/* Project Info */}
-                <div className="text-center">
+                {/* <div className="text-center">
                   <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-2">
                     {projects[selectedProject].tech.slice(0, 6).map((tech) => (
                       <Badge key={tech} variant="secondary" className="text-xs bg-white/10 text-white border-white/20">
@@ -444,7 +444,7 @@ export function Projects({ projects }: ProjectsProps) {
                   <p className="text-white/80 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
                     {projects[selectedProject].description}
                   </p>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           </motion.div>
