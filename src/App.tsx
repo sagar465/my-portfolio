@@ -48,7 +48,8 @@ const Background = lazy(() =>
 );
 
 // Data
-import { resumeData } from './data/resume-data';
+// import { resumeData } from './data/resume-data';
+import { resumeData } from './data/resume-manager-data';
 
 // Loading fallback component
 const LoadingFallback = memo(({ height = "32" }: { height?: string }) => (

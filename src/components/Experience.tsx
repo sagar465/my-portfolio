@@ -43,7 +43,7 @@ export function Experience({ experience }: ExperienceProps) {
           transition={{ duration: 0.6, delay: index * 0.1 }}
         >
           <Card className="group hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 border-border/60 dark:border-border/70 hover:border-primary/60 dark:hover:border-primary/70">
-            <CardContent className="p-6">
+            <CardContent className="p-6 pr-14 lg:pr-6 relative">
               {/* Header */}
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
                 <div className="flex-1">
@@ -72,17 +72,18 @@ export function Experience({ experience }: ExperienceProps) {
                   variant="ghost"
                   size="sm"
                   onClick={() => toggleExpanded(index)}
-                  className="self-start lg:self-center"
+                  aria-label={expandedItems.has(index) ? 'Collapse' : 'Expand'}
+                  className="absolute top-4 right-4 lg:static self-start lg:self-center p-2 h-9 w-9 lg:h-8 lg:w-auto lg:px-2 rounded-full lg:rounded-md border border-border/60 dark:border-border/70 lg:border-0 hover:border-primary/60 dark:hover:border-primary/70 transition-colors focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
                   {expandedItems.has(index) ? (
                     <>
-                      <ChevronUp className="w-4 h-4 mr-2" />
-                      Collapse
+                      <ChevronUp className="w-4 h-4" />
+                      <span className="hidden lg:inline ml-2">Collapse</span>
                     </>
                   ) : (
                     <>
-                      <ChevronDown className="w-4 h-4 mr-2" />
-                      Expand
+                      <ChevronDown className="w-4 h-4" />
+                      <span className="hidden lg:inline ml-2">Expand</span>
                     </>
                   )}
                 </Button>
