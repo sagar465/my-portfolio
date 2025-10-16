@@ -15,16 +15,16 @@ interface SkillsProps {
 export function Skills({ skills }: SkillsProps) {
   const skillCategories = [
     {
-      title: 'Backend Development',
-      technologies: skills.backend,
-      icon: Server,
-      gradient: 'from-blue-500 to-cyan-500'
-    },
-    {
       title: 'Frontend Development',
       technologies: skills.frontend,
       icon: Globe,
       gradient: 'from-purple-500 to-pink-500'
+    },
+    {
+      title: 'Backend Development',
+      technologies: skills.backend,
+      icon: Server,
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
       title: 'Cloud & DevOps',

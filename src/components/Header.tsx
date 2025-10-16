@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/button';
-import { resumeData } from './../data/resume-data';
+// import { resumeData } from './../data/resume-data';
+import resumeData from './../data/resume-manager-data';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -65,6 +66,7 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'background', label: 'My Journey' },
     { id: 'contact', label: 'Contact' }
   ];
 

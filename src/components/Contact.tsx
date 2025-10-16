@@ -164,12 +164,12 @@ export function Contact({ contact }: ContactProps) {
       icon: Linkedin,
       color: 'from-blue-600 to-blue-700'
     },
-    {
-      name: 'GitHub',
-      href: contact.github || null,
-      icon: Github,
-      color: 'from-gray-700 to-gray-900'
-    },
+    // {
+    //   name: 'GitHub',
+    //   href: contact.github || null,
+    //   icon: Github,
+    //   color: 'from-gray-700 to-gray-900'
+    // },
     {
       name: 'Twitter',
       href: contact.twitter || null,

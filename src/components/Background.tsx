@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
 import { Card, CardContent } from './ui/card';
 import { GraduationCap, Code, Users, Briefcase, Rocket } from 'lucide-react';
-import resumeData from '../data/resume-data';
+// import resumeData from '../data/resume-data';
+import resumeData from '../data/resume-manager-data';
 
 interface BackgroundProps {}
 

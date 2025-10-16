@@ -121,7 +121,7 @@ export function Hero({ data, contact }: HeroProps) {
             transition={{ duration: 0.8, delay: 1.0 }}
             className="flex items-center justify-center gap-6 mb-16"
           >
-            {contact.github && (
+            {/* {contact.github && (
               <motion.a
                 href={contact.github}
                 target="_blank"
@@ -132,7 +132,7 @@ export function Hero({ data, contact }: HeroProps) {
               >
                 <Github className="w-6 h-6" />
               </motion.a>
-            )}
+            )} */}
             
             <motion.a
               href={contact.linkedin}

@@ -43,7 +43,7 @@ export function Footer() {
               Built with <Heart className="w-4 h-4 text-red-500 fill-current" /> using React & Motion
             </p>
             <p className="text-sm text-muted-foreground">
-              © {currentYear} Alex Chen. All rights reserved.
+              © {currentYear} Venkata Sagar Varma. All rights reserved.
             </p>
           </motion.div>
 
@@ -55,8 +55,6 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xs text-muted-foreground text-center max-w-md"
           >
-            This portfolio is designed for scalability - content structure is ready for migration to MongoDB 
-            and the design system supports easy customization.
           </motion.div>
         </div>
       </div>
