@@ -1,0 +1,101 @@
+Venkata Sagar Varma Muppala
+Fullstack Software Architect
++1 (314) 514-5938, +91 9632593939 (whatsapp)sagar.varma8@gmail.com
+https://www.linkedin.com/in/venkata-sagar-varma-muppala-271ba369/St Louis, MO, USA
+EXPERIENCE
+Software Architect III
+Sira Soft Solutions Inc 07/2024Saint Louis, MO, USA
+A company focused on delivering high-performance web and mobile applications
+Led a team of 4 UI engineers in delivering high-performance web and mobile applications, driving sprint planning, code reviews, and feature delivery with precision and velocityArchitected scalable full-stack solutions using React.js, Next.js, Zustand, and Spring Boot, enabling seamless user experiences across platforms and devicesCurrently building an internal AI-powered tool that integrates Amazon Q with Figma MCP server, automatically converting Figma designs into React.js and Jetpack Compose code while preserving core UI styling and layout fidelityBuilt Micro Frontend architecture with Webpack 5 Module Federation, allowing dynamic dependency sharing and modular deployment across enterprise-grade appsDeveloped a reusable Survey Form library with plug-and-play capabilities, reducing UI implementation time by 90% within one month and standardizing form logic across projectsConverted complex web apps into mobile-native experiences using React Native, Expo, and Capacitor JS, ensuring full Android/iOS compatibility and offline resilienceIntegrated real-time technician tracking using Maplibre, AWS Here Maps, and Datadog, delivering live location monitoring and proactive alerting for field operationsAccelerated development cycles with AI tools like GitHub Copilot, Supabase AI, Figma Make, WorkIk, and Replit, streamlining code generation, UI prototyping, and backend scaffoldingImplemented BDD test automation using Cucumber, Selenium, and QAF, achieving robust coverage and reducing manual QA effort across web and mobile platformsMentored junior developers on frontend architecture, performance tuning, and design best practices, fostering a culture of clean code and scalable UI patterns
+Technical Lead
+Wells Fargo International Solutions Private Ltd 04/2021 - 05/2024Hyderabad, IndiaA global financial services company providing diverse financial solutions
+Led a cross-functional team of 4 engineers to deliver a secure, scalable financial advisory platform, balancing frontend innovation with backend robustness across microservicesArchitected a Micro Frontend ecosystem using Webpack 5 Module Federation, enabling independent deployment of advisory modules and seamless integration across banking portalsEngineered dynamic, responsive UIs in React.js, leveraging Zustand for lightweight state management and optimizing performance with custom Webpack configurationsStandardized component libraries and design tokens, ensuring consistent branding and accessibility across federated React appsIntegrated Cucumber BDD with Selenium and Qmetry, automating end-to-end test scenarios for advisory workflows and improving QA coverage by 75%Designed and implemented Spring Boot microservices, exposing secure REST APIs for financial data aggregation, client profiling, and advisory recommendationsChampioned Agile rituals and sprint planning, aligning technical deliverables with business goals and fostering a culture of ownership and velocityMentored junior developers in React, Java, and automation frameworks, conducting code reviews, pairing sessions, and architecture walkthroughs to elevate team capabilityCollaborated with product managers and stakeholders, translating financial advisory requirements into scalable tech solutions and delivering PoCs for client validationOptimized CI/CD pipelines for micro frontends and backend services, reducing deployment friction and enabling faster iteration cycles across advisory modules
+Senior Software Engineer
+Amadeus Labs 08/2019 - 03/2021Bengaluru, India
+A company focused on providing travel technology solutions
+Built airline reservation system components using Java 8 and Spring BootDeveloped ARIA template (In-house)-based interfaces with role-based navigationMigrated legacy systems to AWS, integrating Redis for cachingResolved vulnerabilities using Fortify and Splunk-based logging
+SUMMARY
+Seasoned Full Stack Developer with 11+ years of experience in building scalable applications across domains like finance, travel, and retail. Expertise in React.js, NextJs, React Native, NestJS, NodeJs, Angular and Java combined with a strong grasp of microservices, DevOps tools, and modern UI frameworks. Passionate about integrating AI tools into daily development workflows for improved productivity and faster delivery.
+STRENGTHS
+AI Integration in Development
+Proficient in integrating AI tools into development workflows for improved efficiency and productivity
+KEY ACHIEVEMENTS
+Framework ‐ Agnostic AI Design → Code Solution
+Enterprise AI platform (Amazon Q) that converts Figma into production‑ready UI code across React, Angular, Vanilla JS, Jetpack Compose, SwiftUI, and Flutter, delivering ~85% faster development and ~99% visual fidelity.
+Framework‑agnostic rule sets and Q agents are packaged per framework (downloadable folders) so teams load the desired stack and generate code instantly.
+Dynamic component discovery via repo APIs auto‑maps 100+ design‑system components; a 4‑phase workflow (Analysis →  Generation →  Validation → Comparison) plus a 7‑point QA ensures production‑ready, accessible, stateful components.
+SKILLS
+Frontend
+ReactJs, NextJs, Zustand, Tailwind, React  Native, Expo, Bootstrap, Angular, Redux, D3.js
+Backend
+Java, Spring  Boot, Microservices, REST  APIs, JPA, Redis, NestJs
+DevOps & Tools
+Gitlab, Jenkins, Maven, Docker
+Database
+Oracle, MongoDB, SQL  Server
+Testing
+JUnit, Mockito, Jest, Cucumber  BDD  automation, Selenium, Qmetry  Automation  Framework, Karma  &  Jasmine
+AI tools familiar with
+AmazonQ, Copilot  in  VsCode, Gemini  in  IntelliJ, Cursor  AI, Workik, Figma  Make, Replit, v0. dev, Uizard.
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+••••
+​ ​
+​ ​
+​
+​
+EXPERIENCE
+Senior Software Engineer
+Analytics Quotient 05/2018 - 08/2019Bengaluru, India
+A company specializing in data analytics and visualization solutions
+Designed KPI dashboards using Angular, D3, and Google ChartsCreated utilities to export visual data to Excel/PowerPoint using Apache POIEmployed Swagger and Postman for API testing and documentation
+Senior Systems Engineer
+Infosys Ltd 02/2014 - 05/2018Bengaluru, India
+A multinational corporation that provides IT services and consulting
+Allstate Independent Agents application– a web application built for insurance agents to assist the customers for creating/modifying the insurance policiesAnalyzing the requirements of the application with business peopleParticipating in the design and technical discussions along with the teamCreating the Rest APIs in the backend for communication between UI and backend for data exchangeImplementing the code, writing unit test cases for code coverage
+EDUCATION
+Bachelors of Technology in Electronics & Communications
+Narayana Engineering College
+01/2012 - 01/2013  Nellore, India
+PROJECTS
+School Management App
+08/2025 - 09/2025
+Mobile School Management App built using React Native, Expo, and Supabase
+Built a multi-role mobile app for Students, Teachers, Parents, and School Admins with role-based dashboards, real-time notifications, and secure accessKey features: attendance with calendar views, assignments and grading, schedules with conflict detection, teacher–parent chat, newsletters/announcements, fee tracking, and admin analyticsArchitecture: React Native (TypeScript, Expo), Gluestack UI + NativeWind; Supabase (PostgreSQL, Auth, RLS, real-time); Zustand + SecureStore; React Hook Form + Yup; EAS buildsBackend: NestJS API with project-per-tenant isolation, host-based Supabase client resolution, cached Settings API (branding/colors/logo), and server-moderated access to settings/dataSecurity & performance: RLS-driven data protection, bearer auth, in-memory caching, API-first settings, and removal of legacy membership logic for simpler, safer multi-tenancyUX & delivery: Figma-driven UI, dark/light theming, polished transitions, deep links for auth, and environment-ready setup (Dev/QA/Prod)AI-assisted dev: Leveraged GitHub Copilot for rapid feature scaffolding, refactors, test stubs, and SQL migration drafting to accelerate delivery while maintaining code quality
+Nutrition Tracking App
+08/2025 - 09/2025
+AI assisted cross-platform nutrition app
+Built a React Native (Expo, TypeScript) app to search foods and view detailed nutrition, prototyped in Figma and accelerated with GitHub CopilotKey features: email auth + Google/Apple SSO, searchable results with detail modal, light/dark themes with toggle, bottom tabs (Home, Voice Search, Photo Upload, Profile), persistent header (branding, logout, theme toggle), inline loading states, and profile screenTech: React Native, Expo, TypeScript, React Navigation, NativeWind (Tailwind), Gluestack UI, Expo Vector Icons, Context API (Auth/Theme)Highlights: component-driven UI for rapid iteration, accessible theming and responsive layouts, clean state management, scalable navigation, Android/iOS ready (EAS builds)
+•••
+•
+•••
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•

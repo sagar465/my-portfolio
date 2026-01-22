@@ -39,9 +39,9 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center space-y-2"
           >
-            <p className="text-muted-foreground flex items-center justify-center gap-2">
+            {/* <p className="text-muted-foreground flex items-center justify-center gap-2">
               Built with <Heart className="w-4 h-4 text-red-500 fill-current" /> using React & Motion
-            </p>
+            </p> */}
             <p className="text-sm text-muted-foreground">
               © {currentYear} Venkata Sagar Varma. All rights reserved.
             </p>

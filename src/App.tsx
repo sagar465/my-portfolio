@@ -16,6 +16,9 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 const Objective = lazy(() => 
   import('./components/Objective').then(m => ({ default: m.Objective })).catch(() => ({ default: () => <div>Error loading content</div> }))
 );
+const KeyAchievements = lazy(() =>
+  import('./components/KeyAchievements').then(m => ({ default: m.KeyAchievements })).catch(() => ({ default: () => <div>Error loading content</div> }))
+);
 const Skills = lazy(() => 
   import('./components/Skills').then(m => ({ default: m.Skills })).catch(() => ({ default: () => <div>Error loading content</div> }))
 );
@@ -125,6 +128,19 @@ export default function App() {
             <Objective objective={resumeData.objective} />
           </Suspense>
         </Section>
+
+        {/* Key Achievements Section */}
+        {resumeData.objective.keyAchievements && resumeData.objective.keyAchievements.length > 0 && (
+          <Section
+            id="achievements"
+            title="Key Achievements"
+            subtitle="Highlights that reflect how I deliver impact"
+          >
+            <Suspense fallback={<LoadingFallback height="48" />}>
+              <KeyAchievements achievements={resumeData.objective.keyAchievements} />
+            </Suspense>
+          </Section>
+        )}
 
         {/* Skills Section */}
         <Section 

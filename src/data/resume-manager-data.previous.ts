@@ -24,14 +24,7 @@ import nf04 from '../assets/nutrifind/4_Voice_search_screen.png';
 import nf05 from '../assets/nutrifind/5_Photo_search_screen.png';
 import nf06 from '../assets/nutrifind/6_Profile_screen.png';
 
-import previousResumeData from './resume-manager-data.previous';
-
-// Static rollback switch:
-// - `false` (default): use the latest resume content below
-// - `true`: fall back to the previous snapshot in `resume-manager-data.previous.ts`
-export const USE_PREVIOUS_RESUME_DATA = false;
-
-const currentResumeData = {
+export const resumeData = {
     profile: {
         name: "Venkata Sagar Varma Muppala",
         firstName: "Venkata Sagar Varma",
@@ -52,58 +45,32 @@ const currentResumeData = {
             "Build scalable, user-first products with AI-accelerated delivery.",
         description:
             "Seasoned Full Stack Developer with 11+ years of experience in building scalable applications across domains like finance, travel, and retail. Expertise in React.js, NextJs, React Native, NestJS, NodeJs, Angular and Java combined with a strong grasp of microservices, DevOps tools, and modern UI frameworks. Passionate about integrating AI tools into daily development workflows for improved productivity and faster delivery.",
-        goals: [
-            "Architect scalable, user-first applications across finance, travel, and retail domains",
-            "Accelerate development workflows using AI tools like GitHub Copilot, Cursor AI, and Figma Make",
-            "Lead cross-functional teams in delivering robust microservices and modern UI frameworks",
-            "Drive continuous innovation through 11+ years of full-stack development expertise",
-        ],
-        keyAchievements: [
-            {
-                title: "Framework-Agnostic AI Design → Code Solution",
-                description:
-                    "Enterprise AI platform (Amazon Q) that converts Figma into production-ready UI code across React, Angular, Vanilla JS, Jetpack Compose, SwiftUI, and Flutter, delivering ~85% faster development and ~99% visual fidelity.",
-                bullets: [
-                    "Framework-agnostic rule sets and Q agents are packaged per framework (downloadable folders) so teams load the desired stack and generate code instantly.",
-                    "Dynamic component discovery via repo APIs auto-maps 100+ design-system components.",
-                    "A 4-phase workflow (Analysis → Generation → Validation → Comparison) plus a 7-point QA ensures production-ready, accessible, stateful components.",
-                ],
-            },
-        ],
     },
     skills: {
         frontend: [
-            "ReactJs",
-            "NextJs",
-            "Zustand",
-            "Tailwind",
+            "React Js",
+            "Next Js",
             "React Native",
-            "Expo",
+            "Zustand",
+            "Redux",
+            "Tailwind",
+            "Figma",
             "Bootstrap",
             "Angular",
-            "Redux",
             "D3.js",
         ],
         backend: [
             "Java",
-            "Spring Boot",
-            "Microservices",
-            "REST APIs",
             "JPA",
+            "Microservices",
             "Redis",
-            "NestJs",
+            "REST APIs",
+            "Spring Boot",
+            "MongoDB",
+            "Oracle",
+            "SQL Server",
         ],
-        cloud: ["Gitlab", "Jenkins", "Maven", "Docker"],
-        database: ["Oracle", "MongoDB", "SQL Server"],
-        testing: [
-            "JUnit",
-            "Mockito",
-            "Jest",
-            "Cucumber BDD automation",
-            "Selenium",
-            "Qmetry Automation Framework",
-            "Karma & Jasmine",
-        ],
+        cloud: ["AWS", "Docker", "Gitlab", "Jenkins", "Maven", "Gradle"],
         aiTools: [
             "AmazonQ",
             "Copilot in VsCode",
@@ -140,7 +107,7 @@ const currentResumeData = {
                 "QAF",
             ],
             achievements: [
-                "Leading a team of 4 UI engineers in delivering high-performance web and mobile applications, driving sprint planning, code reviews, and feature delivery with precision and velocity.",
+                "Led a team of 4 UI engineers in delivering high-performance web and mobile applications, driving sprint planning, code reviews, and feature delivery with precision and velocity.",
                 "Architected scalable full-stack solutions using React.js, Next.js, Zustand, and Spring Boot, enabling seamless user experiences across platforms and devices.",
                 "Currently building an internal AI-powered tool that integrates Amazon Q with Figma MCP server, automatically converting Figma designs into React.js and Jetpack Compose code while preserving core UI styling and layout fidelity.",
                 "Built Micro Frontend architecture with Webpack 5 Module Federation, allowing dynamic dependency sharing and modular deployment across enterprise-grade apps.",
@@ -496,9 +463,5 @@ const currentResumeData = {
         github: "https://github.com/sagar465",
     },
 } as const;
-
-export const resumeData = (USE_PREVIOUS_RESUME_DATA
-    ? previousResumeData
-    : currentResumeData) as typeof currentResumeData;
 
 export default resumeData;

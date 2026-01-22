@@ -8,6 +8,8 @@ interface SkillsProps {
     backend: string[];
     frontend: string[];
     cloud: string[];
+    database?: string[];
+    testing?: string[];
     aiTools: string[];
   };
 }
@@ -32,6 +34,26 @@ export function Skills({ skills }: SkillsProps) {
       icon: Cloud,
       gradient: 'from-green-500 to-emerald-500'
     },
+    ...(skills.database && skills.database.length > 0
+      ? [
+          {
+            title: 'Database',
+            technologies: skills.database,
+            icon: Server,
+            gradient: 'from-blue-500 to-cyan-500'
+          }
+        ]
+      : []),
+    ...(skills.testing && skills.testing.length > 0
+      ? [
+          {
+            title: 'Testing & Quality',
+            technologies: skills.testing,
+            icon: Cloud,
+            gradient: 'from-green-500 to-emerald-500'
+          }
+        ]
+      : []),
     {
       title: 'AI Tools & Productivity',
       technologies: skills.aiTools,
