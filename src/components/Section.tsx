@@ -5,18 +5,24 @@ interface SectionProps {
   id: string;
   title: string;
   subtitle?: string;
+  /**
+   * Optional accent label rendered as a pill ABOVE the title — used to tag a section
+   * with context a scanner should catch first (e.g. "Recent project · Agentic AI").
+   */
+  eyebrow?: ReactNode;
   children: ReactNode;
   className?: string;
   background?: 'default' | 'muted';
 }
 
-export function Section({ 
-  id, 
-  title, 
-  subtitle, 
-  children, 
-  className = '', 
-  background = 'default' 
+export function Section({
+  id,
+  title,
+  subtitle,
+  eyebrow,
+  children,
+  className = '',
+  background = 'default'
 }: SectionProps) {
   return (
     <section id={id} className={`py-20 relative ${className}`}>
@@ -28,6 +34,13 @@ export function Section({
           transition={{ duration: 0.4 }}
           className="text-center mb-16"
         >
+          {eyebrow && (
+            <div className="mb-4 flex justify-center">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                {eyebrow}
+              </span>
+            </div>
+          )}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
             {title}
           </h2>

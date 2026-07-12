@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { Sparkles } from 'lucide-react';
 import { Section } from './Section';
 
 /**
@@ -32,14 +33,21 @@ export function AigentLoopPage() {
       <Section
         id="aigentloop"
         title="AIgentLoop"
-        subtitle="An autonomous multi-agent software build pipeline"
+        eyebrow={
+          <>
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
+            Recent project · Agentic AI
+          </>
+        }
+        subtitle="A multi-agent AI software build pipeline I designed and built"
       >
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-10">
           <p className="text-muted-foreground">
-            AIgentLoop coordinates a team of specialised AI agents — Requirements,
-            Design, Architecture, Implementer, Tester, and Handoff — to take an idea
-            from spec to a diff that is ready for a human to commit. It pauses at human
-            approval gates and self-corrects through revise loops.
+            AIgentLoop is one of my recent projects — I built it to explore agentic
+            software delivery. It coordinates a team of specialised AI agents —
+            Requirements, Design, Architecture, Implementer, Tester, and Handoff — to take
+            an idea from spec to a diff that is ready for a human to commit. It pauses at
+            human approval gates and self-corrects through revise loops.
           </p>
           <p className="text-muted-foreground">
             The pipeline below plays itself: watch each agent hand off its artifact,

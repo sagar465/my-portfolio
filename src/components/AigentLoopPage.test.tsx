@@ -23,6 +23,22 @@ describe('AigentLoopPage (P0 stub)', () => {
     expect(container.querySelector('section#aigentloop')).not.toBeNull();
   });
 
+  it('frames it as my own recent agentic project (ownership signal for recruiters, D-018)', () => {
+    render(
+      <MemoryRouter>
+        <AigentLoopPage />
+      </MemoryRouter>
+    );
+    // Eyebrow badge + first-person subtitle/intro make ownership explicit.
+    expect(screen.getByText(/Recent project · Agentic AI/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/A multi-agent AI software build pipeline I designed and built/i),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/AIgentLoop is one of my recent projects/i),
+    ).toBeInTheDocument();
+  });
+
   it('explains the six-agent pipeline to a cold visitor', () => {
     render(
       <MemoryRouter>
