@@ -36,27 +36,27 @@ const currentResumeData = {
         name: "Venkata Sagar Varma Muppala",
         firstName: "Venkata Sagar Varma",
         lastName: "Muppala",
-        title: "Full-Stack Software Architect",
+        title: "Full-Stack Software Architect · AI & Agentic Systems",
         tagline:
-            "11+ years building scalable apps across finance, travel, and retail. Java + Angular + React/React Native + microservices. AI-assisted delivery.",
+            "12+ years designing and delivering scalable web and mobile apps across finance, travel, and retail. Now focused on AI & agentic systems that automate the software delivery lifecycle end-to-end.",
         avatar: profileAvatar,
-        location: "St Louis, MO",
+        location: "St. Louis, MO, USA",
         email: "sagar.varma8@gmail.com",
         links: {
             linkedin:
-                "https://linkedin.com/in/venkata-sagar-varma-muppala-271ba369",
+                "https://www.linkedin.com/in/venkata-sagar-varma-muppala-271ba369/",
         },
     },
     objective: {
         headline:
             "Build scalable, user-first products with AI-accelerated delivery.",
         description:
-            "Seasoned Full Stack Developer with 11+ years of experience in building scalable applications across domains like finance, travel, and retail. Expertise in React.js, NextJs, React Native, NestJS, NodeJs, Angular and Java combined with a strong grasp of microservices, DevOps tools, and modern UI frameworks. Passionate about integrating AI tools into daily development workflows for improved productivity and faster delivery.",
+            "Full-Stack Software Architect with 12+ years designing and delivering scalable web and mobile applications across finance, travel, and retail. Deep expertise in React.js, Next.js, React Native, Node/NestJS, Angular, and Java/Spring Boot, with a strong command of micro-frontends, microservices, and DevOps. Now focused on AI & agentic systems — architecting multi-agent pipelines that automate the software delivery lifecycle end-to-end, cutting delivery time while raising consistency and quality.",
         goals: [
             "Architect scalable, user-first applications across finance, travel, and retail domains",
-            "Accelerate development workflows using AI tools like GitHub Copilot, Cursor AI, and Figma Make",
+            "Build multi-agent AI pipelines that automate the software delivery lifecycle end-to-end",
             "Lead cross-functional teams in delivering robust microservices and modern UI frameworks",
-            "Drive continuous innovation through 11+ years of full-stack development expertise",
+            "Drive continuous innovation through 12+ years of full-stack development expertise",
         ],
         keyAchievements: [
             {
@@ -69,58 +69,109 @@ const currentResumeData = {
                     "A 4-phase workflow (Analysis → Generation → Validation → Comparison) plus a 7-point QA ensures production-ready, accessible, stateful components.",
                 ],
             },
+            {
+                title: "Reusable Survey Form Library",
+                description:
+                    "Built a reusable, plug-and-play Survey Form library that cut form-implementation time by ~90%, standardizing form logic across projects alongside a Micro-Frontend architecture (Webpack 5 Module Federation) for modular, independent deployment.",
+            },
+            {
+                title: "Automated Advisory QA Coverage",
+                description:
+                    "Automated end-to-end advisory workflows with Cucumber BDD + Selenium + Qmetry and optimized CI/CD, improving QA coverage ~75% while speeding iteration on the Wells Fargo financial-advisory platform.",
+            },
         ],
     },
-    skills: {
-        frontend: [
-            "ReactJs",
-            "NextJs",
-            "Zustand",
-            "Tailwind",
-            "React Native",
-            "Expo",
-            "Bootstrap",
-            "Angular",
-            "Redux",
-            "D3.js",
-        ],
-        backend: [
-            "Java",
-            "Spring Boot",
-            "Microservices",
-            "REST APIs",
-            "JPA",
-            "Redis",
-            "NestJs",
-        ],
-        cloud: ["Gitlab", "Jenkins", "Maven", "Docker"],
-        database: ["Oracle", "MongoDB", "SQL Server"],
-        testing: [
-            "JUnit",
-            "Mockito",
-            "Jest",
-            "Cucumber BDD automation",
-            "Selenium",
-            "Qmetry Automation Framework",
-            "Karma & Jasmine",
-        ],
-        aiTools: [
-            "AmazonQ",
-            "Copilot in VsCode",
-            "Cursor AI",
-            "Figma Make",
-            "Gemini in IntelliJ",
-            "Replit",
-            "Uizard",
-            "v0. dev",
-            "Workik",
-        ],
-    },
+    // Skills: the 7 resume categories in resume order (PDF "CORE SKILLS"), each
+    // with its exact members. Ordered array so Skills.tsx renders exactly 7.
+    skills: [
+        {
+            category: "Frontend",
+            members: [
+                "React.js",
+                "Next.js",
+                "React Native",
+                "Angular",
+                "Zustand",
+                "Redux",
+                "Tailwind",
+                "Expo",
+                "D3.js",
+            ],
+        },
+        {
+            category: "Backend",
+            members: [
+                "Java",
+                "Spring Boot",
+                "Node.js",
+                "NestJS",
+                "Microservices",
+                "REST APIs",
+                "JPA",
+                "Redis",
+            ],
+        },
+        {
+            category: "AI & Agentic",
+            members: [
+                "Multi-Agent Pipelines",
+                "MCP (Model Context Protocol)",
+                "Amazon Q",
+                "Claude",
+                "GitHub Copilot",
+                "Cursor",
+                "Figma MCP",
+            ],
+        },
+        {
+            category: "Architecture",
+            members: [
+                "Micro-Frontends (Webpack 5 Module Federation)",
+                "Multi-Tenant SaaS",
+                "Design Systems",
+                "CI/CD",
+            ],
+        },
+        {
+            category: "Cloud & DevOps",
+            members: [
+                "AWS (ECR, Fargate, EC2, S3, Route53)",
+                "Kubernetes",
+                "Docker",
+                "GitLab",
+                "Jenkins",
+                "Maven",
+            ],
+        },
+        {
+            category: "Data",
+            members: [
+                "Oracle",
+                "MongoDB",
+                "SQL Server",
+                "Supabase (PostgreSQL)",
+                "Redis",
+            ],
+        },
+        {
+            category: "Testing",
+            members: [
+                "Jest",
+                "JUnit",
+                "Mockito",
+                "Playwright",
+                "Maestro",
+                "Cucumber BDD",
+                "Selenium",
+                "Qmetry",
+            ],
+        },
+    ],
     experience: [
         {
             company: "Sira Soft Solutions Inc",
             role: "Software Architect III",
-            Location: "Missouri USA",
+            Location: "St. Louis, MO, USA",
             period: "07/2024 – Present",
             stack: [
                 "React Js",
@@ -153,7 +204,7 @@ const currentResumeData = {
             ],
         },
         {
-            company: "Wells Fargo India",
+            company: "Wells Fargo International Solutions",
             role: "Technical Lead",
             Location: "Hyderabad, India",
             period: "04/2021 – 05/2024",
@@ -277,8 +328,8 @@ const currentResumeData = {
         },
         {
             company: "Infosys Ltd",
-            role: "Software Engineer",
-            Location: "Mysore, India",
+            role: "Senior Systems Engineer",
+            Location: "Bengaluru, India",
             period: "02/2014 – 05/2018",
             stack: [
                 "Java",
@@ -335,9 +386,9 @@ const currentResumeData = {
     certifications: [],
     languages: {
         spoken: [
-            { name: "English", level: "Fluent" },
+            { name: "English", level: "Advanced" },
             { name: "Telugu", level: "Native" },
-            { name: "Hindi", level: "Fluent" },
+            { name: "Hindi", level: "Intermediate" },
         ],
         programming: ["Java", "TypeScript", "JavaScript", "SQL"],
     },
@@ -385,10 +436,10 @@ const currentResumeData = {
                 year: "2014",
                 title: "Started Software Engineering Journey",
                 description:
-                    "Began career as a Software Engineer at Infosys, focusing on Java programming fundamentals and building solid foundation in enterprise application development.",
+                    "Began career as a Senior Systems Engineer at Infosys, focusing on Java programming fundamentals and building solid foundation in enterprise application development.",
                 icon: "GraduationCap",
                 company: "Infosys Ltd",
-                role: "Software Engineer",
+                role: "Senior Systems Engineer",
             },
             {
                 year: "2018",
@@ -414,7 +465,7 @@ const currentResumeData = {
                 description:
                     "Promoted to Technical Lead at Wells Fargo, leading full stack development teams through complete software development lifecycle including requirements gathering, design, development, testing, CI/CD, and maintenance.",
                 icon: "Briefcase",
-                company: "Wells Fargo India",
+                company: "Wells Fargo International Solutions",
                 role: "Technical Lead",
             },
             {
@@ -429,6 +480,49 @@ const currentResumeData = {
         ],
     },
     projects: [
+        {
+            name: "EduSarvam - Multi-Tenant School Management Platform (AI-Powered)",
+            description:
+                "Architected a multi-tenant SaaS for Indian schools — role-based web & mobile apps for Students, Teachers, Parents, and Admins spanning attendance, assignments, exams, fees, timetables, transport, and real-time notifications.",
+            stack: "React · React Native · NestJS · Supabase · Gemini",
+            tech: [
+                "React",
+                "React Native",
+                "NestJS",
+                "Supabase",
+                "Gemini",
+            ],
+            subFeatures: [
+                {
+                    title: "Multi-tenant SaaS for schools",
+                    detail:
+                        "A multi-tenant SaaS for Indian schools with role-based web & mobile apps for Students, Teachers, Parents, and Admins — spanning attendance, assignments, exams, fees, timetables, transport, and real-time notifications.",
+                },
+                {
+                    title: '"Okta" — Gemini-powered AI assistant',
+                    detail:
+                        "A Gemini-powered, role-aware chatbot using function-calling / tool-use over live school data — answers natural-language questions on attendance, timetables, results, and fees, scoped per role and tenant, with conversation memory, prompt-injection guards, and PII redaction.",
+                },
+                {
+                    title: "AI quiz generation",
+                    detail:
+                        "An LLM pipeline that generates CBSE/ICSE-aligned questions (MCQ, true/false, fill-in-the-blank) tagged by difficulty and Bloom's level, with a teacher-review workflow, auto-grading, and per-user & per-institution budget caps to control AI spend.",
+                },
+                {
+                    title: "Live bus tracking",
+                    detail:
+                        "A real-time transport module — GPS-based trip tracking with stop-by-stop progress, boarding/deboarding attendance, delay alerts, and offline-vehicle detection across vehicles, drivers, and routes.",
+                },
+                {
+                    title: "Provider-agnostic AI service",
+                    detail:
+                        "A provider-agnostic AI service (Gemini/Groq) with fallback, rate limiting, and cost guards, backed by a NestJS API with project-per-tenant isolation, host-based Supabase client resolution, and RLS-driven data protection with bearer auth.",
+                },
+            ],
+            image: "",
+            link: "",
+            screenshots: [] as string[],
+        },
         {
             name: "EduManage - Mobile School Management App",
             description:
@@ -491,9 +585,11 @@ const currentResumeData = {
     testimonials: [],
     contact: {
         email: "sagar.varma8@gmail.com",
+        phone: "+1 (314) 514-5938",
+        whatsapp: "+91 96325 93939",
         linkedin:
-            "https://linkedin.com/in/venkata-sagar-varma-muppala-271ba369",
-        github: "https://github.com/sagar465",
+            "https://www.linkedin.com/in/venkata-sagar-varma-muppala-271ba369/",
+        github: "https://github.com/s4spublic",
     },
 } as const;
 

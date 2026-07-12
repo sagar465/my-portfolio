@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/button';
 // import { resumeData } from './../data/resume-data';
@@ -14,6 +15,8 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +60,18 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
+    }
+  };
+
+  // Home-or-scroll: on the homepage, jump to the section in place; on any other
+  // route (e.g. /aigentloop), navigate home with a hash so ScrollToAnchor lands
+  // on the section after the homepage mounts (architecture §1.5).
+  const goToSection = (sectionId: string) => {
+    setMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/#' + sectionId);
+    } else {
+      scrollToSection(sectionId);
     }
   };
 
@@ -87,7 +101,7 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="cursor-pointer"
-            onClick={() => scrollToSection('hero')}
+            onClick={() => goToSection('hero')}
           >
             <span className="text-xl ms-3 sm:ms-0 font-semibold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
               {resumeData?.profile?.firstName || 'My Profile'}
@@ -99,13 +113,21 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => goToSection(item.id)}
                 className="text-foreground/70 hover:text-foreground transition-colors duration-200 relative group"
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
               </button>
             ))}
+            {/* AIgentLoop — the one ADDED entry; a real route link (AC-7.2) */}
+            <Link
+              to="/aigentloop"
+              className="text-foreground/70 hover:text-foreground transition-colors duration-200 relative group"
+            >
+              AIgentLoop
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
+            </Link>
           </nav>
 
           {/* Dark Mode Toggle */}
@@ -151,12 +173,20 @@ export function Header({ darkMode, toggleDarkMode }: HeaderProps) {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => goToSection(item.id)}
                   className="block w-full text-left px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-accent/50 transition-colors duration-200"
                 >
                   {item.label}
                 </button>
               ))}
+              {/* AIgentLoop — the one ADDED entry; a real route link (AC-7.2) */}
+              <Link
+                to="/aigentloop"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-accent/50 transition-colors duration-200"
+              >
+                AIgentLoop
+              </Link>
             </div>
           </motion.nav>
         )}

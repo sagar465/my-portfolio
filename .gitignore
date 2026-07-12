@@ -41,3 +41,21 @@ yarn-error.*
 supabase/.temp/
 
 build
+
+# --- Web build & test artifacts (Vite / Vitest / Playwright) ---
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# editors
+.vscode/
+.idea/
+
+# logs
+*.log
+logs/
+
+# AIgentLoop pipeline working state (local build scratch — not part of the site)
+.aigentloop/

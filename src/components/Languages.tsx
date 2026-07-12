@@ -52,6 +52,7 @@ const LanguageIcon = ({ language }: { language: string }) => {
 const getLevelColor = (level: string): string => {
   switch (level.toLowerCase()) {
     case 'native': return 'from-green-500/20 to-green-600/30 border-green-500/40';
+    case 'advanced': return 'from-blue-500/20 to-blue-600/30 border-blue-500/40';
     case 'fluent': return 'from-blue-500/20 to-blue-600/30 border-blue-500/40';
     case 'conversational': return 'from-orange-500/20 to-orange-600/30 border-orange-500/40';
     case 'intermediate': return 'from-yellow-500/20 to-yellow-600/30 border-yellow-500/40';
@@ -63,6 +64,7 @@ const getLevelColor = (level: string): string => {
 const getLevelBadgeColor = (level: string): string => {
   switch (level.toLowerCase()) {
     case 'native': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300';
+    case 'advanced': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
     case 'fluent': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
     case 'conversational': return 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300';
     case 'intermediate': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';

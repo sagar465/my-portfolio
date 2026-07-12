@@ -121,9 +121,10 @@ export function Hero({ data, contact }: HeroProps) {
             transition={{ duration: 0.8, delay: 1.0 }}
             className="flex items-center justify-center gap-6 mb-16"
           >
-            {/* {contact.github && (
+            {contact.github && (
               <motion.a
                 href={contact.github}
+                aria-label="GitHub"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 5 }}
@@ -132,10 +133,11 @@ export function Hero({ data, contact }: HeroProps) {
               >
                 <Github className="w-6 h-6" />
               </motion.a>
-            )} */}
-            
+            )}
+
             <motion.a
               href={contact.linkedin}
+              aria-label="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: -5 }}
@@ -147,6 +149,7 @@ export function Hero({ data, contact }: HeroProps) {
             
             <motion.a
               href={`mailto:${contact.email}`}
+              aria-label="Email"
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 rounded-full bg-background/60 dark:bg-background/40 backdrop-blur-lg border border-border/30 hover:border-primary transition-colors shadow-lg shadow-black/5 dark:shadow-black/20"
