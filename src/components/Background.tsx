@@ -43,8 +43,11 @@ export function Background({}: BackgroundProps) {
                   whileHover={{ scale: 1.2 }}
                   className="relative z-10 flex-shrink-0"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br bg-black from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg">
-                    <IconComponent className="w-7 h-7 text-white" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg">
+                    {/* Icon pairs with the disc via primary-foreground so it inverts with
+                        the theme (white on the dark light-mode disc, dark on the near-white
+                        dark-mode disc) — not a fixed white that vanishes in dark mode (D-017). */}
+                    <IconComponent className="w-7 h-7 text-primary-foreground" />
                   </div>
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}

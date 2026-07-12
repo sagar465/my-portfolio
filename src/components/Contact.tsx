@@ -5,12 +5,14 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
-import { Mail, Linkedin, Github, Twitter, Send, MapPin, Globe, User } from 'lucide-react';
+import { Mail, Linkedin, Github, Twitter, Send, MapPin, Globe, User, Phone, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner@2.0.3';
 
 interface ContactProps {
   contact: {
     email: string;
+    phone?: string;
+    whatsapp?: string;
     linkedin?: string;
     github?: string;
     twitter?: string;
@@ -150,47 +152,75 @@ export function Contact({ contact }: ContactProps) {
     }
   };
 
-  // Build social links dynamically based on available data
+  // WhatsApp deep-links use wa.me/<international digits> (no +, spaces, or dashes);
+  // tel: links keep the human-readable number. Both are derived from the raw
+  // contact strings so an unset value simply drops the channel (filtered below).
+  const whatsappDigits = contact.whatsapp
+    ? contact.whatsapp.replace(/[^\d]/g, '')
+    : '';
+
+  // Build the contact channels dynamically based on available data. Each channel
+  // that has data renders as an actionable card; missing ones are filtered out.
   const allPossibleLinks = [
     {
       name: 'Email',
       href: contact.email ? `mailto:${contact.email}` : null,
+      external: false,
       icon: Mail,
       color: 'from-red-500 to-pink-500'
     },
     {
+      name: 'Phone',
+      href: contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, '')}` : null,
+      external: false,
+      icon: Phone,
+      color: 'from-emerald-500 to-teal-600'
+    },
+    {
+      name: 'WhatsApp',
+      href: whatsappDigits ? `https://wa.me/${whatsappDigits}` : null,
+      external: true,
+      icon: MessageCircle,
+      color: 'from-green-500 to-green-600'
+    },
+    {
       name: 'LinkedIn',
       href: contact.linkedin || null,
+      external: true,
       icon: Linkedin,
       color: 'from-blue-600 to-blue-700'
     },
-    // {
-    //   name: 'GitHub',
-    //   href: contact.github || null,
-    //   icon: Github,
-    //   color: 'from-gray-700 to-gray-900'
-    // },
+    {
+      name: 'GitHub',
+      href: contact.github || null,
+      external: true,
+      icon: Github,
+      color: 'from-gray-700 to-gray-900'
+    },
     {
       name: 'Twitter',
       href: contact.twitter || null,
+      external: true,
       icon: Twitter,
       color: 'from-sky-400 to-sky-600'
     },
     {
       name: 'Website',
       href: contact.website || null,
+      external: true,
       icon: Globe,
       color: 'from-green-500 to-green-600'
     },
     {
       name: 'Portfolio',
       href: contact.portfolio || null,
+      external: true,
       icon: User,
       color: 'from-purple-500 to-purple-600'
     }
   ];
 
-  // Filter out links that don't have a href value
+  // Filter out channels that don't have a href value
   const socialLinks = allPossibleLinks.filter(link => link.href);
 
   return (
@@ -330,8 +360,9 @@ export function Contact({ contact }: ContactProps) {
               <motion.a
                 key={link.name}
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                aria-label={link.name}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

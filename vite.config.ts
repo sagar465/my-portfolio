@@ -4,6 +4,10 @@
   import tailwindcss from '@tailwindcss/vite';
   import path from 'path';
 
+  // NOTE: `test` block (Vitest) is typed via a triple-slash reference so the
+  // config stays valid without a repo-wide tsconfig (architecture §8.1).
+  /// <reference types="vitest/config" />
+
   export default defineConfig({
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -66,5 +70,31 @@
       host: true,
       port: 4173,
       open: false,
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: ['./src/test/setup.ts'],
+      css: false,
+      // Coverage floor per rubric §C/§L.3: 95% on the new/changed surface.
+      // Scoped to P0's new source files so the untyped legacy repo is excluded.
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'html'],
+        include: [
+          'src/components/ScrollToAnchor.tsx',
+          'src/components/Homepage.tsx',
+          'src/components/AigentLoopPage.tsx',
+          'src/components/Header.tsx',
+        ],
+        thresholds: {
+          statements: 95,
+          branches: 95,
+          functions: 95,
+          lines: 95,
+        },
+      },
+      // Playwright specs live at repo root under e2e/ — keep them out of Vitest.
+      exclude: ['e2e/**', 'node_modules/**', 'build/**'],
     },
   });

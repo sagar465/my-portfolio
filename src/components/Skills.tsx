@@ -1,66 +1,47 @@
 import { motion } from 'motion/react';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
-import { Server, Globe, Cloud, Zap } from 'lucide-react';
+import { Server, Globe, Cloud, Zap, Sparkles, Layers, Database, TestTube } from 'lucide-react';
 
-interface SkillsProps {
-  skills: {
-    backend: string[];
-    frontend: string[];
-    cloud: string[];
-    database?: string[];
-    testing?: string[];
-    aiTools: string[];
-  };
+interface SkillCategory {
+  category: string;
+  members: string[];
 }
 
+interface SkillsProps {
+  /**
+   * The resume's CORE SKILLS categories, in resume order. Each entry is a
+   * `{ category, members[] }` pair; the section renders one card per category.
+   * Falls back to `[]` so the legacy/previous-data shape can't crash the render.
+   */
+  skills: readonly SkillCategory[];
+}
+
+// Per-category icon + gradient, keyed by the resume category name. The card
+// visuals (icon tile, gradient, badges) are the pre-existing design — this only
+// maps each of the 7 resume categories to one of the existing visual treatments.
+const CATEGORY_STYLE: Record<string, { icon: typeof Globe; gradient: string }> = {
+  Frontend: { icon: Globe, gradient: 'from-purple-500 to-pink-500' },
+  Backend: { icon: Server, gradient: 'from-blue-500 to-cyan-500' },
+  'AI & Agentic': { icon: Sparkles, gradient: 'from-orange-500 to-red-500' },
+  Architecture: { icon: Layers, gradient: 'from-indigo-500 to-purple-500' },
+  'Cloud & DevOps': { icon: Cloud, gradient: 'from-green-500 to-emerald-500' },
+  Data: { icon: Database, gradient: 'from-blue-500 to-cyan-500' },
+  Testing: { icon: TestTube, gradient: 'from-teal-500 to-green-500' },
+};
+
+const DEFAULT_STYLE = { icon: Zap, gradient: 'from-slate-500 to-gray-500' };
+
 export function Skills({ skills }: SkillsProps) {
-  const skillCategories = [
-    {
-      title: 'Frontend Development',
-      technologies: skills.frontend,
-      icon: Globe,
-      gradient: 'from-purple-500 to-pink-500'
-    },
-    {
-      title: 'Backend Development',
-      technologies: skills.backend,
-      icon: Server,
-      gradient: 'from-blue-500 to-cyan-500'
-    },
-    {
-      title: 'Cloud & DevOps',
-      technologies: skills.cloud,
-      icon: Cloud,
-      gradient: 'from-green-500 to-emerald-500'
-    },
-    ...(skills.database && skills.database.length > 0
-      ? [
-          {
-            title: 'Database',
-            technologies: skills.database,
-            icon: Server,
-            gradient: 'from-blue-500 to-cyan-500'
-          }
-        ]
-      : []),
-    ...(skills.testing && skills.testing.length > 0
-      ? [
-          {
-            title: 'Testing & Quality',
-            technologies: skills.testing,
-            icon: Cloud,
-            gradient: 'from-green-500 to-emerald-500'
-          }
-        ]
-      : []),
-    {
-      title: 'AI Tools & Productivity',
-      technologies: skills.aiTools,
-      icon: Zap,
-      gradient: 'from-orange-500 to-red-500'
-    }
-  ];
+  const skillCategories = (skills ?? []).map((c) => {
+    const style = CATEGORY_STYLE[c.category] ?? DEFAULT_STYLE;
+    return {
+      title: c.category,
+      technologies: c.members,
+      icon: style.icon,
+      gradient: style.gradient,
+    };
+  });
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

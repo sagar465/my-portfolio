@@ -30,6 +30,12 @@
   --accent-foreground: #030213;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
+  /* Semantic pipeline-status palette (flagship): green = success/done,
+     blue = info/working. White icon rides on each filled disc (AA-safe). */
+  --success: oklch(0.55 0.15 150);
+  --success-foreground: oklch(1 0 0);
+  --info: oklch(0.52 0.17 255);
+  --info-foreground: oklch(1 0 0);
   --border: rgba(0, 0, 0, 0.1);
   --input: transparent;
   --input-background: #f3f3f5;
@@ -70,6 +76,11 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
+  /* Slightly brighter on the dark card so the filled discs pop; white icon rides. */
+  --success: oklch(0.62 0.14 152);
+  --success-foreground: oklch(0.985 0 0);
+  --info: oklch(0.60 0.16 255);
+  --info-foreground: oklch(0.985 0 0);
   --border: oklch(0.380 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
@@ -107,6 +118,10 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-input-background: var(--input-background);

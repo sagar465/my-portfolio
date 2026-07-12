@@ -3,9 +3,15 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { ExternalLink, Github, Star, Users, TrendingUp, Award, X, ChevronLeft, ChevronRight, Smartphone, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './ui/accordion';
+import { ExternalLink, Github, Star, Users, TrendingUp, Award, X, ChevronLeft, ChevronRight, Smartphone, ZoomIn, ZoomOut, RotateCcw, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
+interface SubFeature {
+  title: string;
+  detail: string;
+}
 
 interface Project {
   name: string;
@@ -14,6 +20,9 @@ interface Project {
   image: string;
   link: string;
   screenshots: string[];
+  /** Deep-dive projects (e.g. EduSarvam) carry an exact resume stack line + sub-features. */
+  stack?: string;
+  subFeatures?: SubFeature[];
 }
 
 interface ProjectsProps {
@@ -173,16 +182,112 @@ export function Projects({ projects }: ProjectsProps) {
     return TrendingUp;
   };
 
+  // Deep-dive entries (EduSarvam) render an expanded card with sub-features; the
+  // remaining entries keep the existing image/gallery card. Preserve resume order.
+  const deepDiveProjects = projects.filter((p) => p.subFeatures && p.subFeatures.length > 0);
+  const galleryProjects = projects.filter((p) => !(p.subFeatures && p.subFeatures.length > 0));
+  // The gallery gallery-modal indexing must reference the original `projects` array.
+  const galleryIndexOf = (project: Project) => projects.indexOf(project);
+
   return (
-    <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
-      {projects.map((project, index) => (
+    <div className="max-w-7xl mx-auto space-y-12">
+      {/* Deep-dive projects (e.g. EduSarvam) — expanded card + sub-feature accordion.
+          `id="edusarvam"` is the anchor target /projects/edusarvam scrolls to
+          (resolveAnchorId('edusarvam') → 'projects' section; this card is inside it). */}
+      {deepDiveProjects.map((project, dIndex) => (
+        <motion.div
+          key={project.name}
+          id="edusarvam"
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: dIndex * 0.1, ease: 'easeOut' }}
+          className="scroll-mt-24"
+        >
+          <Card className="overflow-hidden border-primary/40 dark:border-primary/50 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+            <CardContent className="p-6 sm:p-8">
+              {/* Header */}
+              <div className="flex items-start gap-3 mb-4">
+                <div className="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-xl sm:text-2xl font-medium text-foreground">
+                    {project.name}
+                  </h3>
+                  {project.stack && (
+                    <p className="mt-1 text-sm text-primary/90 font-medium break-words">
+                      {project.stack}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <p className="text-foreground/70 leading-relaxed mb-4">
+                {project.description}
+              </p>
+
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.tech.map((tech) => (
+                  <Badge key={tech} variant="secondary" className="text-xs">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+
+              {/* Sub-features — stacked + expandable on mobile (accordion), no overflow */}
+              <h4 className="font-medium mb-3 text-foreground">Highlights</h4>
+              <Accordion
+                type="multiple"
+                defaultValue={project.subFeatures!.map((_, i) => `edusarvam-sf-${i}`)}
+                className="w-full"
+              >
+                {project.subFeatures!.map((sf, i) => (
+                  <AccordionItem key={sf.title} value={`edusarvam-sf-${i}`}>
+                    <AccordionTrigger className="text-foreground">
+                      <span className="flex items-center gap-2 text-left">
+                        <TrendingUp className="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
+                        {sf.title}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-foreground/70 leading-relaxed">
+                      {sf.detail}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+
+              {project.link && (
+                <div className="flex gap-3 pt-6 mt-6 border-t border-border/60 dark:border-border/70">
+                  <Button variant="default" size="sm" asChild>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Learn More
+                    </a>
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
+
+      {/* Gallery projects — unchanged existing card pattern */}
+      <div className="flex flex-wrap justify-center gap-8">
+      {galleryProjects.map((project, index) => (
         <motion.div
           key={project.name}
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ 
-            duration: 0.6, 
+          transition={{
+            duration: 0.6,
             delay: index * 0.1,
             ease: "easeOut"
           }}
@@ -273,7 +378,7 @@ export function Projects({ projects }: ProjectsProps) {
                     variant="outline"
                     size="sm"
                     className={project.link ? '' : 'flex-1'}
-                    onClick={() => openGallery(index)}
+                    onClick={() => openGallery(galleryIndexOf(project))}
                   >
                     <span className="inline-flex items-center justify-center gap-2">
                       <Smartphone className="w-4 h-4" />
@@ -286,6 +391,7 @@ export function Projects({ projects }: ProjectsProps) {
           </Card>
         </motion.div>
       ))}
+      </div>
 
       {/* Screenshot Gallery Modal */}
       <AnimatePresence>
